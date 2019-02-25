@@ -1,0 +1,19 @@
+{
+  "name": "Lab5",
+  "version": "1.0.0",
+  "description": "a simple node app",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon",
+    "std": "standard --fix"
+  },
+  "keywords": [],
+  "author": "osheriff",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "joi": "^14.3.1",
+    "mongoose": "^5.4.15",
+    "standard": "^12.0.1"
+  }
+}
