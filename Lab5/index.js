@@ -10,7 +10,6 @@ const mongoose = require('mongoose')
 // ===-------------------------------------------------------------------------------------=== //
 const books = require('./api/routes/books')
 const users = require('./api/routes/users')
-const votes = require('./api/routes/votes')
 // ===-------------------------------------------------------------------------------------=== //
 
 // ===-------------------------------------------------------------------------------------=== //
@@ -31,7 +30,6 @@ const app = express()
 app.use(express.json()) // use express json to parse the body of the requests
 app.use('/api/books', books) // use books.js for routes starting with '/api/books'
 app.use('/api/users', users) // use users.js for routes starting with '/api/users'
-app.use('/api/votes', votes) // use votes.js for routes starting with '/api/votes'
 // ===-------------------------------------------------------------------------------------=== //
 
 // ===-------------------------------------------------------------------------------------=== //
@@ -40,12 +38,15 @@ app.use('/api/votes', votes) // use votes.js for routes starting with '/api/vote
 app.get('/', (request, response) => {
   const links = [
     { href: '/api/users', text: 'Users' },
-    { href: '/api/books', text: 'Books' },
-    { href: '/api/votes', text: 'Votes' }
+    { href: '/api/books', text: 'Books' }
   ]
   const header = `<h2>Welcome to the Book Store !</h2><br>`
   const data = links.map(link => `<a href=${link.href}>${link.text}</a>`).join('<br>')
   return response.send(`${header} ${data}`)
+})
+
+app.use((request, response) => {
+  response.status(404).send(`Sorry, this page was not found !`)
 })
 // ===-------------------------------------------------------------------------------------=== //
 
